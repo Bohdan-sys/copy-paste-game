@@ -1,0 +1,1 @@
+CRA with Formik, Yup validation, Fontawesome icons, Material Ui, Redux, json-server, moment Js
