@@ -17,7 +17,7 @@ export const Header = ({ children }) => {
                         indicatorColor="primary"
                         className="tabs">
                         <Tab component={NavLink} className="tabs__link"
-                            to='/copy-paste-game'
+                            to='/copy-paste-game' exact
                             label={<span className="caption caption--size_4">Copy</span>} value={'/copy-paste-game'} />
 
                         <Tab component={NavLink} className="tabs__link"
