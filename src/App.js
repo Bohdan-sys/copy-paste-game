@@ -35,7 +35,7 @@ function App() {
             <Timer />
             <SwipeableRoutes>
 
-              <Route path={'/'} exact component={CopyPage} />
+              <Route path={'/copy-paste-game'} exact component={CopyPage} />
               <Route path={'/pastepage'} component={PastePage} />
 
 
