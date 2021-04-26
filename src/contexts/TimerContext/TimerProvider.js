@@ -11,6 +11,7 @@ export const TimerContextProvider = ({ children }) => {
         start: false,
     }
     const [timerState, dispatch] = useReducer(timerReducer, initialTimerState)
+
     const formatTime = () => {
         const getSeconds = `0${(timerState.timer % 60)}`.slice(-2)
         const minutes = `${Math.floor(timerState.timer / 60)}`

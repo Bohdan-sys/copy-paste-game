@@ -9,11 +9,9 @@ export const PasteGrid = () => {
     const { grid, pasteItem, rotate, lifeChanger, lifes } = useContext(GridContext)
 
     console.log(grid)
-
-
     return (
         <Container maxWidth="md">
-            <Grid container className="grid" wrap="nowrap" >
+            <Grid container className="grid" wrap="wrap-reverse" >
                 <Grid className='grid__box' style={rotate ? { transform: `rotate(${randomDegree()}deg)` } : { transform: `rotate(0deg)` }}>
                     <ArrowUpwardIcon color="primary" fontSize="large" />
                     {grid.copyGrid.map((item, index) => (

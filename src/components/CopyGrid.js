@@ -3,12 +3,11 @@ import { Container, Grid, Button } from '@material-ui/core';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { GridContext } from '../contexts/GridContext/GridProvider'
 import { TimerContext } from "../contexts/TimerContext/TimerProvider";
-
+import { LocalStorageContext } from "../contexts/LocalStorageContext/LocalStorageProvider";
 
 export const CopyGrid = () => {
     const { startWatch, start } = useContext(TimerContext)
     const { grid, copyItem, lifeChanger, lifes } = useContext(GridContext)
-
 
 
     return (

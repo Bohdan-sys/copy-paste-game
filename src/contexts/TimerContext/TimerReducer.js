@@ -1,6 +1,5 @@
 export const TIMER = 'TIMER'
 export const START = 'START'
-
 export const RESET = 'RESET'
 const handlers = {
     [TIMER]: (timerState, { payload }) => ({

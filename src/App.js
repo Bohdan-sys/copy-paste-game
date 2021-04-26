@@ -16,6 +16,7 @@ import './sass/App.sass';
 
 
 import SwipeableRoutes from "react-swipeable-routes";
+import { LocalStorageContextProvider } from './contexts/LocalStorageContext/LocalStorageProvider';
 
 
 function App() {
@@ -26,24 +27,22 @@ function App() {
     <div className='App'>
 
       <GridContextProvider>
-        <TimerContextProvider>
-          <BrowserRouter>
-            <Header>
-              <Settings />
-            </Header>
-            <LifeDisplay />
-            <Timer />
-            <SwipeableRoutes>
+        <LocalStorageContextProvider>
+          <TimerContextProvider>
+            <BrowserRouter>
+              <Header>
+                <Settings />
+              </Header>
+              <LifeDisplay />
+              <Timer />
+              <SwipeableRoutes>
+                <Route path={'/copy-paste-game'} exact component={CopyPage} />
+                <Route path={'/pastepage'} component={PastePage} />
+              </SwipeableRoutes>
+            </BrowserRouter>
+          </TimerContextProvider>
+        </LocalStorageContextProvider>
 
-              <Route path={'/copy-paste-game'} exact component={CopyPage} />
-              <Route path={'/pastepage'} component={PastePage} />
-
-
-            </SwipeableRoutes>
-
-
-          </BrowserRouter>
-        </TimerContextProvider>
       </GridContextProvider>
 
 
