@@ -8,12 +8,12 @@ import { Switcher } from './Switcher';
 import { LifeControl } from './LifeControl';
 
 import { GridContext } from '../contexts/GridContext/GridProvider';
-import { TimerContext } from "../contexts/TimerContext/TimerProvider";
+// import { TimerContext } from "../contexts/TimerContext/TimerProvider";
 
 
 export const Settings = () => {
     const { grid } = useContext(GridContext)
-    const { start } = useContext(TimerContext)
+    // const { start } = useContext(TimerContext)
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -32,7 +32,7 @@ export const Settings = () => {
                 aria-controls="menu"
                 aria-haspopup="true"
                 onClick={handleClick}
-                disabled={grid.pasteGrid.length === 0 && !start ? false : true}
+                disabled={grid.pasteGrid.length === 0 ? false : true}
             >
                 <MoreVertIcon />
             </IconButton>

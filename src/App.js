@@ -7,7 +7,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import { Header } from './components/Header';
 import { LifeDisplay } from './components/LifeDisplay';
 import { Settings } from './components/Settings';
-import { Timer } from './components/Timer';
+// import { Timer } from './components/Timer';
 import { GridContextProvider } from './contexts/GridContext/GridProvider';
 import { TimerContextProvider } from './contexts/TimerContext/TimerProvider';
 import { CopyPage } from './pages/CopyPage'
@@ -17,6 +17,7 @@ import './sass/App.sass';
 
 import SwipeableRoutes from "react-swipeable-routes";
 import { LocalStorageContextProvider } from './contexts/LocalStorageContext/LocalStorageProvider';
+import { RefreshBtn } from './components/RefreshBtn';
 
 
 function App() {
@@ -25,26 +26,24 @@ function App() {
 
 
     <div className='App'>
-
-      <GridContextProvider>
-        <LocalStorageContextProvider>
+      <LocalStorageContextProvider>
+        <GridContextProvider>
           <TimerContextProvider>
             <BrowserRouter>
               <Header>
                 <Settings />
               </Header>
               <LifeDisplay />
-              <Timer />
+              {/* <Timer /> */}
               <SwipeableRoutes>
                 <Route path={'/copy-paste-game'} exact component={CopyPage} />
                 <Route path={'/pastepage'} component={PastePage} />
               </SwipeableRoutes>
+              <RefreshBtn />
             </BrowserRouter>
           </TimerContextProvider>
-        </LocalStorageContextProvider>
-
-      </GridContextProvider>
-
+        </GridContextProvider>
+      </LocalStorageContextProvider>
 
 
 

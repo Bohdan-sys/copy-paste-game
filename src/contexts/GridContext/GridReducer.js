@@ -15,21 +15,25 @@ const handlers = {
                 return item
             })
         }),
-        pasteGrid: gridState.pasteGrid.length === 0 ? gridState.copyGrid : gridState.pasteGrid,
+        pasteGrid: gridState.pasteGrid.length <= 0 ?
+            gridState.copyGrid.map(arr => arr.map(item => item = 0))
+            : gridState.pasteGrid,
         curValue: payload
     }),
 
     [PASTEITEM]: (gridState, { payload }) => ({
         ...gridState,
 
-        copyGrid: gridState.copyGrid.map(arr => {
-            return arr.map(item => {
-                if (item === payload && payload === gridState.curValue) {
+        copyGrid: gridState.copyGrid.map((arr, index) => {
+            return arr.map((item, i) => {
+                if (item.id === gridState.curValue.id && payload.id === gridState.curValue.id && item) {
+                    gridState.pasteGrid[index][i] = gridState.curValue
                     return 0
                 } else { return item }
             })
         }),
-        curValue: payload === gridState.curValue ? {} : gridState.curValue
+
+        curValue: payload.id === gridState.curValue.id ? {} : gridState.curValue
     }),
 
     [UPDATEGRID]: (gridState, { payload }) => ({

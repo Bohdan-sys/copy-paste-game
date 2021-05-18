@@ -1,18 +1,24 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext } from "react";
 import { useLocalStorageState } from '../../Utils/LocalStorageState'
-import { GridContext } from '../GridContext/GridProvider'
 
 
 
 export const LocalStorageContext = createContext();
 
 export const LocalStorageContextProvider = ({ children }) => {
-    const { grid } = useContext(GridContext)
-    const [history, setHistory] = useLocalStorageState('copy-paste-game', grid)
+
+
+    const [history, setHistory] = useLocalStorageState('copy-paste-game', [])
+
+
+
+    const historySetter = (val) => {
+        setHistory(val)
+    }
 
     return (
         <LocalStorageContext.Provider value={{
-            history, setHistory
+            history, historySetter
         }}>
             {children}
         </LocalStorageContext.Provider>

@@ -10,12 +10,12 @@ import { GridContext } from '../contexts/GridContext/GridProvider'
 
 export const LifeControl = () => {
 
-    const { lifeChanger } = useContext(GridContext)
+    const { lifeChanger, lifes } = useContext(GridContext)
 
     return (
         <div className='lifes'>
             <h1 className="caption caption--size_4"> Set lifes</h1>
-            <IconButton color="primary" onClick={() => lifeChanger('-')} >
+            <IconButton color="primary" onClick={() => lifes > 1 ? lifeChanger('-') : null} >
                 <RemoveIcon fontSize="small" />
             </IconButton>
             <IconButton color="primary" onClick={() => lifeChanger('+')}>

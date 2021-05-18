@@ -1,8 +1,9 @@
-import React, { useReducer, createContext, useState } from "react";
+import React, { useReducer, createContext, useState, useContext, useEffect } from "react";
 import { gridReducer } from './GridReducer'
 import { COPYITEM, PASTEITEM, UPDATEGRID } from './GridPropTypes'
 import { generateMatrix } from '../../Utils/ArrConvertor'
-import { randomColor, randomId } from '../../Utils/Randomizer'
+import { randomColor, randomId, randomEmoji } from '../../Utils/Randomizer'
+import { LocalStorageContext } from "../LocalStorageContext/LocalStorageProvider";
 
 
 export const GridContext = createContext();
@@ -10,26 +11,29 @@ export const GridContext = createContext();
 
 export const GridContextProvider = ({ children }) => {
 
+    const { history, historySetter } = useContext(LocalStorageContext)
+
     const assignObjects = (matrix) => {
         return matrix.map(value => {
             return value.map(() => {
                 return {
                     id: randomId(),
                     color: randomColor(),
-                    clicked: false
+                    emoji: randomEmoji(),
+                    clicked: false,
                 }
             })
         })
     }
 
-    const [dif, setDif] = useState(6)
+    const [dif, setDif] = useState(history.length <= 0 ? 6 : history.copyGrid.concat().length)
 
     const initialState = {
         copyGrid: assignObjects(generateMatrix(dif)),
         pasteGrid: [],
         curValue: {},
     }
-    const [state, dispatch] = useReducer(gridReducer, initialState)
+    const [state, dispatch] = useReducer(gridReducer, history.length <= 0 ? initialState : history)
 
     const action = (sign) => {
         if (sign === '+') {
@@ -52,6 +56,10 @@ export const GridContextProvider = ({ children }) => {
         }
         return sign
     }
+
+    useEffect(() => {
+        historySetter(state)
+    }, [state, historySetter])
 
     const copyItem = (item) => {
         dispatch({ type: COPYITEM, payload: item })
@@ -82,6 +90,8 @@ export const GridContextProvider = ({ children }) => {
         }
         return sign
     }
+
+
 
     return (
         <GridContext.Provider value={{
