@@ -8,7 +8,7 @@ export const LocalStorageContext = createContext();
 export const LocalStorageContextProvider = ({ children }) => {
 
 
-    const [history, setHistory] = useLocalStorageState('copy-paste-game', [])
+    const [history, setHistory] = useLocalStorageState('copy-paste-game', {})
 
 
 

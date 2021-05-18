@@ -26,14 +26,14 @@ export const GridContextProvider = ({ children }) => {
         })
     }
 
-    const [dif, setDif] = useState(history.length <= 0 ? 6 : history.copyGrid.concat().length)
+    const [dif, setDif] = useState(history.length <= 0 ? 6 : history.grid.copyGrid.concat().length)
 
     const initialState = {
         copyGrid: assignObjects(generateMatrix(dif)),
         pasteGrid: [],
         curValue: {},
     }
-    const [state, dispatch] = useReducer(gridReducer, history.length <= 0 ? initialState : history)
+    const [state, dispatch] = useReducer(gridReducer, history.length <= 0 ? initialState : history.grid)
 
     const action = (sign) => {
         if (sign === '+') {
@@ -57,9 +57,7 @@ export const GridContextProvider = ({ children }) => {
         return sign
     }
 
-    useEffect(() => {
-        historySetter(state)
-    }, [state, historySetter])
+
 
     const copyItem = (item) => {
         dispatch({ type: COPYITEM, payload: item })
@@ -70,13 +68,13 @@ export const GridContextProvider = ({ children }) => {
     }
 
 
-    const [rotate, setRotate] = useState(false);
+    const [rotate, setRotate] = useState(history.length <= 0 ? false : history.rotation);
     const handleChange = (event) => {
         setRotate(event.target.checked)
     };
 
 
-    const [lifes, setLifes] = useState(3)
+    const [lifes, setLifes] = useState(history.length <= 0 ? 3 : history.lifes)
     const lifeChanger = (sign) => {
         if (sign === '+') {
             if (lifes < 7) {
@@ -92,6 +90,9 @@ export const GridContextProvider = ({ children }) => {
     }
 
 
+    useEffect(() => {
+        historySetter({ grid: state, rotation: rotate, lifes: lifes })
+    }, [lifes, rotate, state])
 
     return (
         <GridContext.Provider value={{
