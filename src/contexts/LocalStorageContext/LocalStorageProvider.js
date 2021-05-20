@@ -12,13 +12,13 @@ export const LocalStorageContextProvider = ({ children }) => {
 
 
 
-    const historySetter = (val) => {
-        setHistory(val)
-    }
+    // const historySetter = (val) => {
+    //     setHistory(val)
+    // }
 
     return (
         <LocalStorageContext.Provider value={{
-            history, historySetter
+            history, historySetter: setHistory
         }}>
             {children}
         </LocalStorageContext.Provider>

@@ -92,7 +92,7 @@ export const GridContextProvider = ({ children }) => {
 
     useEffect(() => {
         historySetter({ grid: state, rotation: rotate, lifes: lifes })
-    }, [lifes, rotate, state])
+    }, [lifes, rotate, state, historySetter])
 
     return (
         <GridContext.Provider value={{
