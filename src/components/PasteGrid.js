@@ -11,7 +11,7 @@ export const PasteGrid = () => {
 
     return (
         <Container maxWidth="md">
-            <Grid container className="grid" wrap="wrap-reverse" >
+            <Grid container className="grid" wrap="wrap-reverse">
                 <Grid className='grid__box' style={rotate ? { transform: `rotate(${randomDegree()}deg)` } : { transform: `rotate(0deg)` }}>
                     {grid.copyGrid.map((item, index) => (
                         <Grid container className="grid__row" wrap="nowrap" key={index}>
@@ -22,7 +22,6 @@ export const PasteGrid = () => {
                                         style={value !== 0 ? { background: `none` } : { background: `${grid.pasteGrid[index][i].color}` }}
                                         disabled={lifes === 0}
                                         onClick={() => {
-                                            console.log(value)
                                             pasteItem(value)
                                             if (value.id !== grid.curValue.id && grid.pasteGrid.length !== 0) { lifeChanger('-') }
                                         }}

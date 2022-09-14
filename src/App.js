@@ -1,9 +1,6 @@
 import React from 'react';
-
-
+import './sass/App.sass';
 import { BrowserRouter, Route } from 'react-router-dom'
-
-
 import { Header } from './components/Header';
 import { LifeDisplay } from './components/LifeDisplay';
 import { Settings } from './components/Settings';
@@ -12,10 +9,7 @@ import { GridContextProvider } from './contexts/GridContext/GridProvider';
 import { TimerContextProvider } from './contexts/TimerContext/TimerProvider';
 import { CopyPage } from './pages/CopyPage'
 import { PastePage } from './pages/PastePage'
-import './sass/App.sass';
-
-
-import SwipeableRoutes from "react-swipeable-routes";
+import SwipeableRoutes from 'react-swipeable-routes';
 import { LocalStorageContextProvider } from './contexts/LocalStorageContext/LocalStorageProvider';
 import { RefreshBtn } from './components/RefreshBtn';
 
